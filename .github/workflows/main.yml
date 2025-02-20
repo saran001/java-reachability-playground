@@ -1,0 +1,20 @@
+name: Build JAVA Playground
+run-name: ${{ github.actor }} is building the application on GitHub Actions 🚀
+on: [push]
+jobs:
+  Build-Application:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone the repository
+      uses: actions/checkout@v4
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+    - name: Install JAVA and MAVEN
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        cache: 'maven'
+    - name: Build the code
+      run: mvn package
+    - run: echo "🍏 This job's status is ${{ job.status }}."
+      
